@@ -9,7 +9,11 @@ import frc.robot.RobotContainer;
 
 public class DriveState extends CommandBase {
   /** Creates a new DriveState. */
-  public DriveState() {
+    double leftPower, rightPower;
+
+  public DriveState(double leftPower, double rightPower) {
+    this.leftPower = leftPower;
+    this.rightPower = rightPower;
     addRequirements(RobotContainer.driveSubsystem);
   }
 
@@ -20,7 +24,7 @@ public class DriveState extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.driveSubsystem.setPower(0.5, 0.5);
+    RobotContainer.driveSubsystem.setPower(leftPower, rightPower);
   }
 
   // Called once the command ends or is interrupted.

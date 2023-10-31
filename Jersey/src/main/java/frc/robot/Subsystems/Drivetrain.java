@@ -4,25 +4,33 @@
 
 package frc.robot.Subsystems;
 
+import org.opencv.video.TrackerGOTURN;
+
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
 
-  TalonSRX frontLeftMotor = new TalonSRX(2);
-  TalonSRX frontRightMotor = new TalonSRX(12);
-  TalonSRX backLeftMotor = new TalonSRX(1);
-  TalonSRX backRightMotor = new TalonSRX(11);
+  VictorSPX frontLeftMotor = new VictorSPX(2);
+  VictorSPX frontRightMotor = new VictorSPX(12);
+  VictorSPX backLeftMotor = new VictorSPX(1);
+  VictorSPX backRightMotor = new VictorSPX(11);
 
-  public Drivetrain() {}
+  public Drivetrain() {
+
+    frontRightMotor.setInverted(true);
+    backRightMotor.setInverted(true);
+  }
 
   public void setPower(double leftPower, double rightPower){
-    frontLeftMotor.set(TalonSRXControlMode.PercentOutput, leftPower);
-    frontRightMotor.set(TalonSRXControlMode.PercentOutput,rightPower);
-    backLeftMotor.set(TalonSRXControlMode.PercentOutput,leftPower );
-    backRightMotor.set(TalonSRXControlMode.PercentOutput, rightPower);
+    frontLeftMotor.set(VictorSPXControlMode.PercentOutput, leftPower);
+    frontRightMotor.set(VictorSPXControlMode.PercentOutput,rightPower);
+    backLeftMotor.set(VictorSPXControlMode.PercentOutput,leftPower );
+    backRightMotor.set(VictorSPXControlMode.PercentOutput, rightPower);
   }
 
   @Override
